@@ -9,7 +9,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh 'docker build -t priya20xenonstack/jenkins-docker-hub .'
+        sh 'docker build -t priya20xenonstack/jenkins-nginx .'
       }
     }
     stage('Login') {
@@ -19,7 +19,7 @@ pipeline {
     }
     stage('Push') {
       steps {
-        sh 'docker push priya20xenonstack/jenkins-docker-hub'
+        sh 'docker push priya20xenonstack/jenkins-nginx'
       }
     }
   }
