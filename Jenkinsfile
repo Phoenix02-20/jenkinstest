@@ -3,6 +3,7 @@ pipeline {
   environment {
     DOCKERHUB_CREDENTIALS = credentials('dockerhub')
     IMAGE_NAME = "jenkins-nginx"
+    DOCKERHUB_REPO = "priya20xenonstack"
   }
   stages {
     stage('Build') {
@@ -24,8 +25,8 @@ pipeline {
           print newTag
           def dockerImage = "${IMAGE_NAME}:${newTag}" 
           print dockerImage
-          sh 'docker tag ${IMAGE_NAME}:latest priya20xenonstack/${dockerImage}'
-          sh 'docker push priya20xenonstack/${dockerImage}'
+          sh 'docker tag ${IMAGE_NAME} ${DOCKERHUB_REPO}/${dockerImage}'
+          sh 'docker push ${DOCKERHUB_REPO}/${dockerImage}'
         }
         
       }
