@@ -19,7 +19,8 @@ pipeline {
       steps {
         script{
           def lastSuccessfulBuild = currentBuild.getPreviousSuccessfulBuild()?.number ?:0
-          def newTag = (lastSuccessfulBuild + 1).toString
+          print lastSuccessfulBuild
+          def newTag = (lastSuccessfulBuild + 1)
           print newTag
           //def dockerImage = "${IMAGE_NAME}:${newTag}" 
           //print dockerImage
