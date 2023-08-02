@@ -2,11 +2,12 @@ pipeline {
   agent any
   environment {
     DOCKERHUB_CREDENTIALS = credentials('dockerhub')
+    IMAGE_NAME = "jenkins-nginx"
   }
   stages {
     stage('Build') {
       steps {
-        sh 'docker build -t priya20xenonstack/jenkins-nginx .'
+        sh 'docker build -t ${IMAGE_NAME} .'
       }
     }
     stage('Login') {
@@ -18,9 +19,9 @@ pipeline {
       steps {
         script{
           def lastSuccessfulBuild = currentBuild.getPreviousSuccessfulBuild()?.number ?:0
-          print "hello"
           print lastSuccessfulBuild
-          sh 'docker push priya20xenonstack/jenkins-nginx'
+          def dockerImage = ${IMAGE_NAME}:${lastSuccessfulBuild + 1} 
+          sh 'docker push priya20xenonstack/${dockerImage}'
         }
         
       }
