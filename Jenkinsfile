@@ -22,7 +22,7 @@ pipeline {
           def lastSuccessfulBuild = currentBuild.getPreviousSuccessfulBuild()?.displayName ?:0
           print lastSuccessfulBuild
           def newTag = (lastSuccessfulBuild + 1)
-          currentBuild.displayName = "#${newTag}"
+          currentBuild.displayName = "${newTag}"
           //$BUILD_ID = "#${newTag}"
           
           print newTag
