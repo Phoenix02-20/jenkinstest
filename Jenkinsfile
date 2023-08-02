@@ -20,7 +20,7 @@ pipeline {
         script{
           def lastSuccessfulBuild = currentBuild.getPreviousSuccessfulBuild()?.number ?:0
           def newTag = lastSuccessfulBuild + 1
-          def dockerImage = "${IMAGE_NAME}:${lastSuccessfulBuild + 1}" 
+          def dockerImage = "${IMAGE_NAME}:${newTag}" 
           sh 'docker push priya20xenonstack/${dockerImage}'
         }
         
