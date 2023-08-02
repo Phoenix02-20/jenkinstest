@@ -19,7 +19,7 @@ pipeline {
     stage('Push') {
       steps {
         script{
-          def lastSuccessfulBuild = currentBuild.getPreviousSuccessfulBuild()?.number ?:0
+          def lastSuccessfulBuild = currentBuild.getPreviousSuccessfulBuild()?.displayName ?:0
           print lastSuccessfulBuild
           def newTag = lastSuccessfulBuild + 1
           currentBuild.displayName = "#${newTag}"
