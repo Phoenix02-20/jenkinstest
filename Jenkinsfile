@@ -2,7 +2,6 @@ pipeline {
   agent any
   environment {
     DOCKERHUB_CREDENTIALS = credentials('dockerhub')
-    LAST_SUCCESSFUL_BUILD = currentBuild.getPreviousBuild()?.getNumber() ?:0
   }
   stages {
     stage('Build') {
@@ -17,9 +16,13 @@ pipeline {
     }
     stage('Push') {
       steps {
-        print "hello"
-        print LAST_SUCCESSFUL_BUILD
-        sh 'docker push priya20xenonstack/jenkins-nginx'
+        script{
+          def lastSuccessfulBuild = currentBuild.getPreviousSuccessfulBuild()?.number ?:0
+          print "hello"
+          print lastSuccessfulBuild
+          sh 'docker push priya20xenonstack/jenkins-nginx'
+        }
+        
       }
     }
   }
