@@ -17,6 +17,7 @@ pipeline {
     }
     stage('Push') {
       steps {
+        print "hello"
         print LAST_SUCCESSFUL_BUILD
         sh 'docker push priya20xenonstack/jenkins-nginx'
       }
