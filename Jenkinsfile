@@ -22,7 +22,7 @@ pipeline {
           def lastSuccessfulBuild = currentBuild.getPreviousSuccessfulBuild()?.number ?:0
           print lastSuccessfulBuild
           def newTag = lastSuccessfulBuild + 1
-          $BUILD_NUMBER = newTag
+          $BUILD_NUMBER = lastSuccessfulBuild
           print $BUILD_NUMBER
           print newTag
           def dockerImage = "${DOCKERHUB_REPO}/${IMAGE_NAME}:${newTag}" 
