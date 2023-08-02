@@ -22,8 +22,8 @@ pipeline {
           def lastSuccessfulBuild = currentBuild.getPreviousSuccessfulBuild()?.displayName ?:0
           print lastSuccessfulBuild.toInteger()
           def newTag = lastSuccessfulBuild + 1
-          currentBuild.displayName = "#${newTag}"
-          $BUILD_ID = "#${newTag}"
+          currentBuild.displayName = "${newTag}"
+          //$BUILD_ID = "#${newTag}"
           
           print newTag
           def dockerImage = "${DOCKERHUB_REPO}/${IMAGE_NAME}:${newTag}" 
