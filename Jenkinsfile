@@ -22,8 +22,8 @@ pipeline {
           print lastSuccessfulBuild
           def newTag = (lastSuccessfulBuild + 1)
           print newTag
-          //def dockerImage = "${IMAGE_NAME}:${newTag}" 
-          //print dockerImage
+          def dockerImage = "${IMAGE_NAME}:${newTag}" 
+          print dockerImage
           sh 'docker tag ${IMAGE_NAME}:latest priya20xenonstack/${IMAGE_NAME}:${newTag}'
           sh 'docker push priya20xenonstack/${dockerImage}'
         }
