@@ -27,7 +27,7 @@ pipeline {
           print dockerImage
           //sh "docker build -t ${dockerImage} ."
           //sh 'docker tag ${IMAGE_NAME} ${dockerImage}'
-          sh 'docker push "${$dockerImage}"'
+          sh "docker push ${env.dockerImage}"
         }
         
       }
