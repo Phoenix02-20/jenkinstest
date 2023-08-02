@@ -20,8 +20,8 @@ pipeline {
       steps {
         script{
           def lastSuccessfulBuild = currentBuild.getPreviousSuccessfulBuild()?.displayName ?:0
-          print type(lastSuccessfulBuild)
-          def newTag = ((lastSuccessfulBuild).toInteger + 1).toString()
+          print lastSuccessfulBuild
+          def newTag = (lastSuccessfulBuild.toInteger() + 1).toString()
           currentBuild.displayName = "#${newTag}"
           //$BUILD_ID = "#${newTag}"
           
