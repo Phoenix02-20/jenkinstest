@@ -2,7 +2,7 @@ pipeline {
   agent any
   environment {
     DOCKERHUB_CREDENTIALS = credentials('dockerhub')
-    LAST_SUCCESSFUL_BUILD = currentBuild.getPreviousBuild()
+    LAST_SUCCESSFUL_BUILD = currentBuild.getPreviousBuild()?.getNumber()
   }
   stages {
     stage('Build') {
