@@ -26,7 +26,7 @@ pipeline {
           def dockerImage = "${DOCKERHUB_REPO}/${IMAGE_NAME}:${newTag}" 
           print dockerImage
           //sh "docker build -t ${dockerImage} ."
-          //sh 'docker tag ${IMAGE_NAME} ${dockerImage}'
+          sh "docker tag ${IMAGE_NAME} ${dockerImage}"
           sh "docker push ${dockerImage}"
         }
         
