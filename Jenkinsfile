@@ -27,7 +27,7 @@ pipeline {
           $BUILD_NUMBER = "${lastSuccessfulBuild}"
           print "Tag ${lastSuccessfulBuild}"
           sh """
-            awk '/Tag/{print $3}' /var/jenkins_home/jobs/jenkinstest/branches/master/builds/${lastSuccessfulBuild}/log | cut -d '' -f 1
+            awk '/Tag/' /var/jenkins_home/jobs/jenkinstest/branches/master/builds/${lastSuccessfulBuild}/log | cut -d '' -f 1
           """
           def dockerImage = "${DOCKERHUB_REPO}/${IMAGE_NAME}:${lastSuccessfulBuild}" 
           print dockerImage
