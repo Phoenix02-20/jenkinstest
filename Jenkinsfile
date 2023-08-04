@@ -24,7 +24,7 @@ pipeline {
           //currentBuild.displayName = "${newTag}"
           print "Tag ${lastSuccessfulBuild}"
 
-          if (${lastSuccessfulBuild} != "0") {
+          if (lastSuccessfulBuild != "0") {
             def oldTag = sh(script: "awk '/Tag/' /var/jenkins_home/jobs/jenkinstest/branches/master/builds/${lastSuccessfulBuild}/log | cut -d ' ' -f 2 | head -n 1", returnStdout: true)
             def intValue = oldTag.toInteger()
             def newTag = (intValue + 1).toString()
