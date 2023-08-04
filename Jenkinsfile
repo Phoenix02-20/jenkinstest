@@ -26,7 +26,7 @@ pipeline {
           //currentBuild.displayName = "${newTag}"
           print "Tag ${lastSuccessfulBuild}"
           
-          def newTag = sh(script: "awk '/Tag/' /var/jenkins_home/jobs/jenkinstest/branches/master/builds/${lastSuccessfulBuild}/log | cut -d ' ' -f 2 | head -n 1", returnStdout: true)
+          def newTag = sh(script: "awk '/Tag/' /var/jenkins_home/jobs/jenkinstest/branches/master/builds/${lastSuccessfulBuild}/log | cut -d ' ' -f 2 | head -n 1")
           echo "New tag: ${newTag}"
           def dockerImage = "${DOCKERHUB_REPO}/${IMAGE_NAME}:${lastSuccessfulBuild}" 
           print dockerImage
