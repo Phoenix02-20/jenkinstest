@@ -28,7 +28,7 @@ pipeline {
           sh """
             ${newTag} = awk '/Tag/' /var/jenkins_home/jobs/jenkinstest/branches/master/builds/${lastSuccessfulBuild}/log | cut -d ' ' -f 2 | head -n 1
           """
-          print ${newTag}
+          print newTag
           def dockerImage = "${DOCKERHUB_REPO}/${IMAGE_NAME}:${lastSuccessfulBuild}" 
           print dockerImage
           //sh "docker build -t ${dockerImage} ."
