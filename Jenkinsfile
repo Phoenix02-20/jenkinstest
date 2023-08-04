@@ -19,23 +19,21 @@ pipeline {
     stage('Push') {
       steps {
         script{
-          //def lastSuccessfulBuild = currentBuild.getPreviousSuccessfulBuild()?.number ?:0
+          def lastSuccessfulBuild = currentBuild.getPreviousSuccessfulBuild()?.number ?:0
           //def newTag = (lastSuccessfulBuild + 1)
           //currentBuild.displayName = "${newTag}"
           //print "Tag ${lastSuccessfulBuild}"
           
-          //def oldTag = sh(script: "awk '/Tag/' /var/jenkins_home/jobs/jenkinstest/branches/master/builds/${lastSuccessfulBuild}/log | cut -d ' ' -f 2 | head -n 1", returnStdout: true)
-          //def intValue = oldTag.toInteger()
-          //def newTag = (intValue + 1).toString()
-          //echo "Old tag: ${oldTag} New tag: ${newTag}"
+          def oldTag = sh(script: "awk '/Tag/' /var/jenkins_home/jobs/jenkinstest/branches/master/builds/${lastSuccessfulBuild}/log | cut -d ' ' -f 2 | head -n 1", returnStdout: true)
+          def intValue = oldTag.toInteger()
+          def newTag = (intValue + 1).toString()
+          echo "Old tag: ${oldTag} New tag: ${newTag}"
           
-          //def dockerImage = "${DOCKERHUB_REPO}/${IMAGE_NAME}:${newTag}" 
+          def dockerImage = "${DOCKERHUB_REPO}/${IMAGE_NAME}:${newTag}" 
           //print dockerImage
-          //sh "docker build -t ${dockerImage} ."
-          //sh "docker tag ${IMAGE_NAME} ${dockerImage}"
-          //sh "docker push ${dockerImage}"
-          sh "docker tag ${IMAGE_NAME} ${DOCKERHUB_REPO}/${IMAGE_NAME}:0"
-          sh "docker push ${DOCKERHUB_REPO}/${IMAGE_NAME}:0"
+          sh "docker build -t ${dockerImage} ."
+          sh "docker tag ${IMAGE_NAME} ${dockerImage}"
+          sh "docker push ${dockerImage}"
         }
         
       }
