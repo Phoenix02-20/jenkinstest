@@ -3,7 +3,7 @@ pipeline {
   environment {
     DOCKERHUB_CREDENTIALS = credentials('dockerhub')
     IMAGE_NAME = "jenkins-nginx"
-    DOCKERHUB_REPO = "priya20xenonstack
+    DOCKERHUB_REPO = "priya20xenonstack"
   }
   stages {
     stage('Build') {
