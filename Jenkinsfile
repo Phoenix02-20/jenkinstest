@@ -25,7 +25,7 @@ pipeline {
           //print "Tag ${lastSuccessfulBuild}"
           print ""
 
-          def oldTag = sh(script: "awk '/docker tag/' /var/jenkins_home/jobs/jenkinstest/branches/master/builds/${lastSuccessfulBuild}/log | cut -d ':' -f 2 | head -n 1", returnStdout: true)
+          def oldTag = sh(script: "awk '/docker tag/' /var/jenkins_home/jobs/jenkinstest/branches/master/builds/${lastSuccessfulBuild}/log | cut -d ' ' -f 5 | head -n 2 | tail -n 1 | cut -d ':' -f 2", returnStdout: true)
           def intValue = oldTag.toInteger()
           def newTag = (intValue + 1).toString()
           echo "Old tag: ${oldTag} New tag: ${newTag}"
