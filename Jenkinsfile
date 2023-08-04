@@ -21,13 +21,14 @@ pipeline {
         script{
           def lastSuccessfulBuild = currentBuild.getPreviousSuccessfulBuild()?.number ?:0
           print lastSuccessfulBuild
+          def newTag = ""
           //def newTag = (lastSuccessfulBuild + 1)
           //currentBuild.displayName = "${newTag}"
           print "Tag ${lastSuccessfulBuild}"
           sh """
-            def newTag = awk '/Tag/' /var/jenkins_home/jobs/jenkinstest/branches/master/builds/${lastSuccessfulBuild}/log | cut -d ' ' -f 2 | head -n 1
+            ${newTag} = awk '/Tag/' /var/jenkins_home/jobs/jenkinstest/branches/master/builds/${lastSuccessfulBuild}/log | cut -d ' ' -f 2 | head -n 1
           """
-          print newTag
+          print ${newTag}
           def dockerImage = "${DOCKERHUB_REPO}/${IMAGE_NAME}:${lastSuccessfulBuild}" 
           print dockerImage
           //sh "docker build -t ${dockerImage} ."
