@@ -19,13 +19,14 @@ pipeline {
     stage('Push') {
       steps {
         script{
+          
           def lastSuccessfulBuild = currentBuild.getPreviousSuccessfulBuild()?.number ?:0
           print lastSuccessfulBuild
           def newTag = (lastSuccessfulBuild + 1)
           //currentBuild.displayName = "${newTag}"
           $BUILD_ID = "${newTag}"
           $BUILD_NUMBER = "${newTag}"
-          print newTag
+          print "Tag ${newTag}"
           def dockerImage = "${DOCKERHUB_REPO}/${IMAGE_NAME}:${newTag}" 
           print dockerImage
           //sh "docker build -t ${dockerImage} ."
