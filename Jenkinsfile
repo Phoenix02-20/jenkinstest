@@ -19,15 +19,17 @@ pipeline {
     stage('Push') {
       steps {
         script{
-          
           def lastSuccessfulBuild = currentBuild.getPreviousSuccessfulBuild()?.number ?:0
           print lastSuccessfulBuild
-          def newTag = (lastSuccessfulBuild + 1)
+          //def newTag = (lastSuccessfulBuild + 1)
           //currentBuild.displayName = "${newTag}"
-          $BUILD_ID = "${newTag}"
-          $BUILD_NUMBER = "${newTag}"
-          print "Tag ${newTag}"
-          def dockerImage = "${DOCKERHUB_REPO}/${IMAGE_NAME}:${newTag}" 
+          $BUILD_ID = "${lastSuccessfulBuild}"
+          $BUILD_NUMBER = "${lastSuccessfulBuild}"
+          print "Tag ${lastSuccessfulBuild}"
+          sh """
+            awk '{Tag} /var/jenkins_home/jobs/jenkinstest/branches/master/builds/${lastSuccessfulBuild} | cut -d '' -f 1
+          """
+          def dockerImage = "${DOCKERHUB_REPO}/${IMAGE_NAME}:${lastSuccessfulBuild}" 
           print dockerImage
           //sh "docker build -t ${dockerImage} ."
           sh "docker tag ${IMAGE_NAME} ${dockerImage}"
