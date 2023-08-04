@@ -23,12 +23,11 @@ pipeline {
           print lastSuccessfulBuild
           //def newTag = (lastSuccessfulBuild + 1)
           //currentBuild.displayName = "${newTag}"
-          $BUILD_ID = "${lastSuccessfulBuild}"
-          $BUILD_NUMBER = "${lastSuccessfulBuild}"
           print "Tag ${lastSuccessfulBuild}"
           sh """
-            awk '/Tag/' /var/jenkins_home/jobs/jenkinstest/branches/master/builds/${lastSuccessfulBuild}/log | cut -d ' ' -f 2 | head -n 1
+            def newTag = awk '/Tag/' /var/jenkins_home/jobs/jenkinstest/branches/master/builds/${lastSuccessfulBuild}/log | cut -d ' ' -f 2 | head -n 1
           """
+          print newTag
           def dockerImage = "${DOCKERHUB_REPO}/${IMAGE_NAME}:${lastSuccessfulBuild}" 
           print dockerImage
           //sh "docker build -t ${dockerImage} ."
