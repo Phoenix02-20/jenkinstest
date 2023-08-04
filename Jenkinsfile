@@ -25,10 +25,9 @@ pipeline {
           //def newTag = (lastSuccessfulBuild + 1)
           //currentBuild.displayName = "${newTag}"
           print "Tag ${lastSuccessfulBuild}"
-          sh """
-            awk '/Tag/' /var/jenkins_home/jobs/jenkinstest/branches/master/builds/${lastSuccessfulBuild}/log | cut -d ' ' -f 2 | head -n 1
-          """
-          //print newTag
+          
+          def newTag = sh(script: "awk '/Tag/' /var/jenkins_home/jobs/jenkinstest/branches/master/builds/${lastSuccessfulBuild}/log | cut -d ' ' -f 2 | head -n 1", returnStdout: true)
+          echo "New tag: ${newTag}"
           def dockerImage = "${DOCKERHUB_REPO}/${IMAGE_NAME}:${lastSuccessfulBuild}" 
           print dockerImage
           //sh "docker build -t ${dockerImage} ."
