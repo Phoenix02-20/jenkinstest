@@ -30,7 +30,7 @@ pipeline {
           echo "Old tag: ${oldTag} New tag: ${newTag}"
           
           def dockerImage = "${DOCKERHUB_REPO}/${IMAGE_NAME}:${newTag}" 
-          print dockerImage
+          //print dockerImage
           //sh "docker build -t ${dockerImage} ."
           sh "docker tag ${IMAGE_NAME} ${dockerImage}"
           sh "docker push ${dockerImage}"
