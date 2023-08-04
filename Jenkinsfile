@@ -34,8 +34,8 @@ pipeline {
           //sh "docker build -t ${dockerImage} ."
           //sh "docker tag ${IMAGE_NAME} ${dockerImage}"
           //sh "docker push ${dockerImage}"
-          sh 'docker tag ${IMAGE_NAME} ${DOCKERHUB_REPO}/${IMAGE_NAME}:0"
-          sh 'docker push ${DOCKERHUB_REPO}/${IMAGE_NAME}:0'
+          sh "docker tag ${IMAGE_NAME} ${DOCKERHUB_REPO}/${IMAGE_NAME}:0"
+          sh "docker push ${DOCKERHUB_REPO}/${IMAGE_NAME}:0"
         }
         
       }
