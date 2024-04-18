@@ -1,10 +1,14 @@
 skip_clone: true
 pipeline:
-  build:
-    image: debian
+  steps:
+  - name: build-image
+    image: docker
     commands:
-      - echo "This is the build step"
-  a-test-step:
-    image: debian
+      - docker build --rm -t local/woodpecker-test .
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  - name: build-project
+    image: local/project-image
     commands:
-      - echo "Testing.."
+      - ./build.sh
