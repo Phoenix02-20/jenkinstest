@@ -1,4 +1,4 @@
-skip_clone: true
+# skip_clone: true
 pipeline:
   test:
     image: alpine
