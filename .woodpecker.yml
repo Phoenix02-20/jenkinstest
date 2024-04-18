@@ -4,3 +4,8 @@ pipeline:
     image: alpine
     commands:
       - echo "Woodpecker CI is working!"
+ build:
+    image: docker:19.03.12
+    commands:
+      - docker build -t test:latest .
+
