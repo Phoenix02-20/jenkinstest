@@ -1,10 +1,15 @@
 skip_clone: true
 pipeline:
- test:
+  test:
     image: alpine
     commands:
       - echo "Woodpecker CI is working!"
- build:
+      - ls
+  build:
     image: docker:19.03.12
     commands:
       - docker build -t test:latest .
+ 
++ git init -b master
++ git config --global --replace-all safe.directory /woodpecker/src/github.com/Phoenix02-20/jenkinstest
++ git remote add origin https://docs.github.com/articles/about-remote-repositories
