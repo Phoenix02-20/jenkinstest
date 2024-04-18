@@ -1,6 +1,10 @@
 skip_clone: true
 pipeline:
- build:
-    image: alpine
+  build:
+    image: debian
     commands:
-      - echo "Hello, Woodpecker!"
+      - echo "This is the build step"
+  a-test-step:
+    image: debian
+    commands:
+      - echo "Testing.."
