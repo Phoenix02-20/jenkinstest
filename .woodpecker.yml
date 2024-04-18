@@ -1,4 +1,4 @@
-# skip_clone: true
+skip_clone: true
 clone:
   git:
     image: woodpeckerci/plugin-git
@@ -7,6 +7,7 @@ pipeline:
     image: alpine
     commands:
       - echo "Woodpecker CI is working!"
+      - ls
  build:
     image: docker:19.03.12
     commands:
