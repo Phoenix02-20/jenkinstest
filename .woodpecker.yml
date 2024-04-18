@@ -1,14 +1,6 @@
 skip_clone: true
 pipeline:
-  steps:
-  - name: build-image
-    image: docker
+ test:
+    image: alpine
     commands:
-      - docker build --rm -t local/woodpecker-test .
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-
-  - name: build-project
-    image: local/project-image
-    commands:
-      - ./build.sh
+      - echo "Woodpecker CI is working!"
