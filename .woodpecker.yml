@@ -10,6 +10,6 @@ pipeline:
     commands:
       - docker build -t test:latest .
  
-+ git init -b master
-+ git config --global --replace-all safe.directory /woodpecker/src/github.com/Phoenix02-20/jenkinstest
-+ git remote add origin https://docs.github.com/articles/about-remote-repositories
+# + git init -b master
+# + git config --global --replace-all safe.directory /woodpecker/src/github.com/Phoenix02-20/jenkinstest
+# + git remote add origin https://docs.github.com/articles/about-remote-repositories
