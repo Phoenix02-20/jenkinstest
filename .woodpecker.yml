@@ -7,4 +7,4 @@ pipeline:
   a-test-step:
     image: debian
     commands:
-      - echo "Testing.."
+      - echo "Testing..."
