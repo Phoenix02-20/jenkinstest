@@ -1,4 +1,7 @@
 # skip_clone: true
+clone:
+  git:
+    image: woodpeckerci/plugin-git
 pipeline:
  test:
     image: alpine
